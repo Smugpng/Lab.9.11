@@ -11,9 +11,11 @@ public class EnemyAi : MonoBehaviour
     private float rotSpeed;
     private float maxDistance;
     private int rng;
+    private GameObject[] pals;
     // Start is called before the first frame update
     void Start()
     {
+        pals = GameObject.FindGameObjectsWithTag("Pals");
         playerShip = GameObject.FindWithTag("Player");
         maxDistance = Random.Range(2, 7);
         rotSpeed = Random.Range(10, 50) * maxDistance;
@@ -36,6 +38,7 @@ public class EnemyAi : MonoBehaviour
         if (distance < maxDistance) MoveAway();
         if (distance > maxDistance) MoveTowards();
     }
+
     private void MoveAway()
     {
         transform.position = Vector2.MoveTowards(transform.position, playerShip.transform.position, -10 *Time.deltaTime);
